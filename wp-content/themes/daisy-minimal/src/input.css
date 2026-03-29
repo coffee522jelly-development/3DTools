@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Tailwind CSS v4 source paths */
+@source "../**/*.php";
+
+/* Custom theme variables if needed */
+:root {
+  --primary-color: var(--color-sky-500);
+}
+
+/* Ensure WordPress default styles play nice with DaisyUI */
+@layer base {
+  .wp-block-image img {
+    @apply rounded-xl shadow-md;
+  }
+}
