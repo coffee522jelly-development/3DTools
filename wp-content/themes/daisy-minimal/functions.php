@@ -10,7 +10,7 @@ function daisy_minimal_setup() {
 add_action('after_setup_theme', 'daisy_minimal_setup');
 
 function daisy_minimal_scripts() {
-    wp_enqueue_style('daisy-minimal-style', get_stylesheet_uri(), array(), '1.2.0');
+    wp_enqueue_style('daisy-minimal-style', get_stylesheet_uri(), array(), '1.3.0');
 }
 add_action('wp_enqueue_scripts', 'daisy_minimal_scripts');
 
@@ -37,7 +37,7 @@ add_filter('excerpt_length', 'daisy_minimal_excerpt_length', 999);
 function daisy_minimal_customize_register($wp_customize) {
     // Theme Design Section
     $wp_customize->add_section('daisy_minimal_options', array(
-        'title' => __('Theme Design', 'daisy-minimal'),
+        'title' => __('Theme Design & Layout', 'daisy-minimal'),
         'priority' => 30,
     ));
 
@@ -59,7 +59,7 @@ function daisy_minimal_customize_register($wp_customize) {
             'wireframe' => 'Wireframe', 'black' => 'Black', 'luxury' => 'Luxury',
             'dracula' => 'Dracula', 'cmyk' => 'CMYK', 'autumn' => 'Autumn',
             'business' => 'Business', 'acid' => 'Acid', 'lemonade' => 'Lemonade',
-            'night' => 'Night', 'coffee' => 'Coffee', 'winter' => 'Winter',
+            'night' => 'Night', 'coffee' => 'Coffee', 'winter' => 'Winter', 'dim' => 'Dim', 'nord' => 'Nord', 'sunset' => 'Sunset',
         ),
     ));
 
@@ -76,6 +76,38 @@ function daisy_minimal_customize_register($wp_customize) {
             'right-sidebar' => 'Right Sidebar',
             'left-sidebar'  => 'Left Sidebar',
             'full-width'    => 'Full Width',
+        ),
+    ));
+
+    // Font Setting
+    $wp_customize->add_setting('daisy_minimal_font', array(
+        'default' => 'sans',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('daisy_minimal_font', array(
+        'label' => __('Font Style', 'daisy-minimal'),
+        'section' => 'daisy_minimal_options',
+        'type' => 'select',
+        'choices' => array(
+            'sans' => 'Modern (Sans)',
+            'serif' => 'Classic (Serif)',
+        ),
+    ));
+
+    // Card Style Setting
+    $wp_customize->add_setting('daisy_minimal_card_style', array(
+        'default' => 'shadow-xl',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('daisy_minimal_card_style', array(
+        'label' => __('Post Card Style', 'daisy-minimal'),
+        'section' => 'daisy_minimal_options',
+        'type' => 'select',
+        'choices' => array(
+            'shadow-xl' => 'High Shadow (Default)',
+            'shadow-md' => 'Small Shadow',
+            'card-bordered' => 'Bordered only',
+            'card-flat' => 'Flat / Clean',
         ),
     ));
 }

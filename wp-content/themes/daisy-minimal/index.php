@@ -1,5 +1,6 @@
 <?php get_header();
 $layout = get_theme_mod('daisy_minimal_layout', 'right-sidebar');
+$card_style = get_theme_mod('daisy_minimal_card_style', 'shadow-xl');
 $show_sidebar = ($layout !== 'full-width' && is_active_sidebar('sidebar-1'));
 $main_class = $show_sidebar ? 'lg:col-span-2' : 'lg:col-span-3';
 ?>
@@ -10,7 +11,7 @@ $main_class = $show_sidebar ? 'lg:col-span-2' : 'lg:col-span-3';
     <div class="<?php echo esc_attr($main_class); ?>">
         <div class="flex flex-col gap-8">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                <article id="post-<?php the_ID(); ?>" <?php post_class('card bg-base-100 shadow-xl overflow-hidden'); ?>>
+                <article id="post-<?php the_ID(); ?>" <?php post_class('card bg-base-100 overflow-hidden ' . esc_attr($card_style)); ?>>
                     <?php if (has_post_thumbnail()) : ?>
                         <figure><?php the_post_thumbnail('large', array('class' => 'w-full h-auto')); ?></figure>
                     <?php endif; ?>

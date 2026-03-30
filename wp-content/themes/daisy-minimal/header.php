@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> data-theme="<?php echo esc_attr(get_theme_mod('daisy_minimal_theme', 'light')); ?>">
+<html <?php language_attributes(); ?>
+      data-theme="<?php echo esc_attr(get_theme_mod('daisy_minimal_theme', 'light')); ?>"
+      data-font="<?php echo esc_attr(get_theme_mod('daisy_minimal_font', 'sans')); ?>">
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

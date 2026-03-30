@@ -1,5 +1,6 @@
 <?php get_header();
 $layout = get_theme_mod('daisy_minimal_layout', 'right-sidebar');
+$card_style = get_theme_mod('daisy_minimal_card_style', 'shadow-xl');
 $show_sidebar = ($layout !== 'full-width' && is_active_sidebar('sidebar-1'));
 $main_class = $show_sidebar ? 'lg:col-span-2' : 'lg:col-span-3';
 ?>
@@ -9,7 +10,7 @@ $main_class = $show_sidebar ? 'lg:col-span-2' : 'lg:col-span-3';
 
     <div class="<?php echo esc_attr($main_class); ?>">
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-            <article id="post-<?php the_ID(); ?>" <?php post_class('prose lg:prose-xl mx-auto bg-base-100 p-6 md:p-10 shadow-xl rounded-box'); ?>>
+            <article id="post-<?php the_ID(); ?>" <?php post_class('prose lg:prose-xl mx-auto bg-base-100 p-6 md:p-10 rounded-box ' . esc_attr($card_style)); ?>>
                 <header class="mb-8 not-prose">
                     <h1 class="text-4xl font-bold mb-2"><?php the_title(); ?></h1>
                     <div class="text-sm opacity-70">
@@ -40,12 +41,12 @@ $main_class = $show_sidebar ? 'lg:col-span-2' : 'lg:col-span-3';
             </article>
 
             <div class="mt-12 flex justify-between max-w-4xl mx-auto">
-                <div><?php previous_post_link('%link', '« Previous: %title'); ?></div>
-                <div><?php next_post_link('%link', 'Next: %title »'); ?></div>
+                <div class="btn btn-ghost"><?php previous_post_link('%link', '« %title'); ?></div>
+                <div class="btn btn-ghost"><?php next_post_link('%link', '%title »'); ?></div>
             </div>
 
             <?php if (comments_open() || get_comments_number()) : ?>
-                <div class="mt-12 max-w-4xl mx-auto bg-base-100 p-6 rounded-box shadow">
+                <div class="mt-12 max-w-4xl mx-auto bg-base-100 p-6 rounded-box <?php echo esc_attr($card_style); ?>">
                     <?php comments_template(); ?>
                 </div>
             <?php endif; ?>
