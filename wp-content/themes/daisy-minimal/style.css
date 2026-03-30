@@ -2,7 +2,7 @@
 /*!
  * Theme Name: Daisy Minimal
  * Description: A modern, customizable WordPress theme using DaisyUI 5 and Tailwind CSS 4.
- * Version: 1.3.0
+ * Version: 1.4.0
  * Author: Jules
  */
 @layer properties;
@@ -1815,6 +1815,9 @@
   .ml-2 {
     margin-left: calc(var(--spacing) * 2);
   }
+  .ml-auto {
+    margin-left: auto;
+  }
   .badge {
     @layer daisyui.l1.l2.l3 {
       display: inline-flex;
@@ -2126,6 +2129,18 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 2px;
   }
+  .border-l {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 1px;
+  }
+  .badge-ghost {
+    @layer daisyui.l1.l2 {
+      border-color: var(--color-base-200);
+      background-color: var(--color-base-200);
+      color: var(--color-base-content);
+      background-image: none;
+    }
+  }
   .badge-outline {
     @layer daisyui.l1.l2 {
       color: var(--badge-color);
@@ -2145,6 +2160,9 @@
   }
   .bg-base-200 {
     background-color: var(--color-base-200);
+  }
+  .p-0 {
+    padding: calc(var(--spacing) * 0);
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
@@ -2200,6 +2218,12 @@
   .text-xl {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+  .badge-sm {
+    @layer daisyui.l1.l2 {
+      --size: calc(var(--size-selector, 0.25rem) * 5);
+      font-size: 0.75rem;
+    }
   }
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
@@ -2584,6 +2608,24 @@
   html[data-font="sans"] {
     font-family: var(--font-sans) !important;
   }
+}
+.menu li > a {
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+  --tw-duration: 200ms;
+  transition-duration: 200ms;
+}
+.menu li.active > a {
+  background-color: var(--color-primary);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
+  }
+  color: var(--color-primary);
+}
+.menu ul {
+  margin-top: calc(var(--spacing) * 1);
+  margin-bottom: calc(var(--spacing) * 1);
 }
 .lg\:grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -4015,6 +4057,10 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -4035,6 +4081,7 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-duration: initial;
     }
   }
 }
