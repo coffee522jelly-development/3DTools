@@ -1,7 +1,7 @@
 /*!
  * Theme Name: Daisy Minimal
  * Description: A modern, customizable WordPress theme using DaisyUI 5 and Tailwind CSS 4.
- * Version: 1.4.0
+ * Version: 1.5.0
  * Author: Jules
  */
 
@@ -39,11 +39,18 @@
     @apply mt-1 mb-1;
 }
 
-/* Layout and Card Styles */
+/* Specific layout and card style overrides to ensure they are never purged */
 .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
 .lg\:col-span-1 { grid-column: span 1 / span 1 !important; }
 .lg\:col-span-2 { grid-column: span 2 / span 2 !important; }
 .lg\:col-span-3 { grid-column: span 3 / span 3 !important; }
+
+/* Order classes for mobile optimization */
+.order-first { order: -9999 !important; }
+.order-last { order: 9999 !important; }
+.lg\:order-first { @media (min-width: 1024px) { order: -9999 !important; } }
+.lg\:order-none { @media (min-width: 1024px) { order: 0 !important; } }
+.lg\:order-last { @media (min-width: 1024px) { order: 9999 !important; } }
 
 .card-flat {
   box-shadow: none !important;

@@ -2,7 +2,7 @@
 /*!
  * Theme Name: Daisy Minimal
  * Description: A modern, customizable WordPress theme using DaisyUI 5 and Tailwind CSS 4.
- * Version: 1.4.0
+ * Version: 1.5.0
  * Author: Jules
  */
 @layer properties;
@@ -1282,6 +1282,12 @@
   .z-\[1\] {
     z-index: 1;
   }
+  .order-first {
+    order: -9999;
+  }
+  .order-last {
+    order: 9999;
+  }
   .hero {
     @layer daisyui.l1.l2.l3 {
       display: grid;
@@ -2069,6 +2075,9 @@
   .gap-2 {
     gap: calc(var(--spacing) * 2);
   }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
+  }
   .gap-8 {
     gap: calc(var(--spacing) * 8);
   }
@@ -2354,6 +2363,11 @@
       }
     }
   }
+  .md\:flex-row {
+    @media (width >= 48rem) {
+      flex-direction: row;
+    }
+  }
   .md\:p-8 {
     @media (width >= 48rem) {
       padding: calc(var(--spacing) * 8);
@@ -2362,6 +2376,16 @@
   .md\:p-10 {
     @media (width >= 48rem) {
       padding: calc(var(--spacing) * 10);
+    }
+  }
+  .lg\:order-first {
+    @media (width >= 64rem) {
+      order: -9999;
+    }
+  }
+  .lg\:order-last {
+    @media (width >= 64rem) {
+      order: 9999;
     }
   }
   .lg\:col-span-1 {
@@ -2638,6 +2662,27 @@
 }
 .lg\:col-span-3 {
   grid-column: span 3 / span 3 !important;
+}
+.order-first {
+  order: -9999 !important;
+}
+.order-last {
+  order: 9999 !important;
+}
+.lg\:order-first {
+  @media (min-width: 1024px) {
+    order: -9999 !important;
+  }
+}
+.lg\:order-none {
+  @media (min-width: 1024px) {
+    order: 0 !important;
+  }
+}
+.lg\:order-last {
+  @media (min-width: 1024px) {
+    order: 9999 !important;
+  }
 }
 .card-flat {
   box-shadow: none !important;
